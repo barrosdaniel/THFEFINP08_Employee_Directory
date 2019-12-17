@@ -113,8 +113,9 @@ BOARD
 ====================================================================== */
 .board {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   grid-gap: 4rem;
+  margin-bottom: 4rem;
 }
 
 .tile {
@@ -127,7 +128,7 @@ BOARD
 }
 
 .tile__image {
-  border-radius: 10rem;
+  border-radius: 15rem;
   margin-right: 2rem;
   width: 12rem;
   height: 12rem;
@@ -142,6 +143,7 @@ BOARD
 .tile__location {
   color: var(--gray-color-medium);
   font-size: 1.5rem;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 480px) {
