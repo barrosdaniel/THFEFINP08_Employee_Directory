@@ -119,12 +119,23 @@ BOARD
 }
 
 .tile {
+  display: flex;
+  align-items: center;
   border: 2px solid var(--gray-color-light);
   border-radius: 5px;
   padding: 2rem;
+  cursor: pointer;
+  transition: 0.2s all;
+}
 
-  display: flex;
-  align-items: center;
+.tile:hover {
+  background-color: var(--gray-color-light);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tile:active {
+  transform: translateY(0);
 }
 
 .tile__image {
@@ -142,8 +153,11 @@ BOARD
 .tile__email,
 .tile__location {
   color: var(--gray-color-medium);
-  font-size: 1.5rem;
-  overflow-wrap: break-word;
+  font-size: 1.4rem;
+}
+
+.tile__email {
+  word-break: break-all;
 }
 
 @media (max-width: 480px) {

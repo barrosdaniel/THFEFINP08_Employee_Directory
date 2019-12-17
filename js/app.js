@@ -8,11 +8,14 @@ const board = document.querySelector('.board');
 /* ======================================================================
 Event Listeners
 ======================================================================*/
+board.addEventListener('click', openModal);
 
 
 /* ======================================================================
 Controllers
 ======================================================================*/
+let userData;
+
 
 /* ======================================================================
 Logic
@@ -22,6 +25,7 @@ function getUserData() {
     .then((response) => response.json())
     .then((usersJSON) => {
       const users = usersJSON.results;
+      userData = users;
       console.log(users[0].picture.thumbnail);
       // Reset Board content
       board.innerHTML = '';
@@ -29,7 +33,7 @@ function getUserData() {
       for (let i = 0; i < users.length; i++) {
         // Generate Tile HTML
         const tileHTML = `
-            <div class="tile">
+            <div class="tile" id="${i}">
               <img src="${users[i].picture.large}" alt="${users[i].name.first} ${users[i].name.last} profile picture" class="tile__image">
               <div class="tile__text">
                 <h2 class="tile__name">${users[i].name.first} ${users[i].name.last}</h2>
@@ -47,26 +51,34 @@ function getUserData() {
       // Add tiles HTML to the DOM
       board.innerHTML = boardHTML;
     })
-
-
-
-
-
-
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(`Error: could not retrieve user data from database`);
+      console.log(error);
+    });
 }
 getUserData();
 
-function renderUserTiles(users) {
-  console.log(users);
-
+function getUserId(clickedElement) {
+  if (clickedElement.className === "tile") {
+    return clickedElement.id;
+  } else if (clickedElement.parentElement.className === 'tile') {
+    return clickedElement.parentElement.id;
+  } else if (clickedElement.parentElement.className === 'tile__text') {
+    return clickedElement.parentElement.parentElement.id;
+  }
 }
 
+function openModal(e) {
+  const tileId = getUserId(e.target);
+  console.log(tileId);
+  console.log(userData[tileId]);
 
 
-
-
-
-
-
-// https://randomuser.me/api/?results=12
+  console.log(e);
+  // console.log(e.target.parentElement);
+  if (e.target.className === 'tile' ||
+    e.target.parentElement.className === 'tile' ||
+    e.target.parentElement.className === 'tile__text') {
+    console.log(e.target);
+  }
+}
