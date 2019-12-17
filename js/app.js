@@ -2,6 +2,8 @@
 UI Elements
 ======================================================================*/
 const board = document.querySelector('.board');
+const modalButtonClose = document.querySelector('.modal__button-close');
+const modal = document.querySelector('.modal');
 
 
 
@@ -9,6 +11,7 @@ const board = document.querySelector('.board');
 Event Listeners
 ======================================================================*/
 board.addEventListener('click', openModal);
+modalButtonClose.addEventListener('click', closeModal);
 
 
 /* ======================================================================
@@ -71,7 +74,8 @@ function getUserId(clickedElement) {
 function openModal(e) {
   const tileId = getUserId(e.target);
   console.log(tileId);
-  console.log(userData[tileId]);
+  const clickedUserData = userData[tileId];
+  console.log(clickedUserData);
 
 
   console.log(e);
@@ -81,4 +85,9 @@ function openModal(e) {
     e.target.parentElement.className === 'tile__text') {
     console.log(e.target);
   }
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+
 }
