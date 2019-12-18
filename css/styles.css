@@ -197,9 +197,8 @@ MODAL
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  /* To be hidden */
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
   justify-content: center;
   align-items: center;
 }

@@ -10,7 +10,7 @@ const modal = document.querySelector('.modal');
 Event Listeners
 ======================================================================*/
 board.addEventListener('click', openModal);
-modal.addEventListener('click', closeModal);
+modal.addEventListener('click', processModalClick);
 
 
 
@@ -62,6 +62,17 @@ function getUserData() {
 }
 getUserData();
 
+function processModalClick(e) {
+  if (e.target.classList.value.includes('modal__button-close-icon') ||
+    e.target.classList.value.includes('modal__button-close')) {
+    closeModal(e);
+  } else if (e.target.classList.value.includes('modal__button-previous')) {
+    showPrevious(e);
+  } else if (e.target.classList.value.includes('modal__button-next')) {
+    showNext(e);
+  }
+}
+
 function getUserId(clickedElement) {
   if (clickedElement.className === "tile") {
     return clickedElement.id;
@@ -100,7 +111,7 @@ function openModal(e) {
   const tileId = getUserId(e.target);
   const clickedUserData = userData[tileId];
 
-  // Use variable clickedUserData to render modal content
+  // Render modal content
   const modalContent = getModalContent(clickedUserData, tileId);
   modal.innerHTML = modalContent;
 
@@ -109,7 +120,39 @@ function openModal(e) {
 }
 
 function closeModal(e) {
-  if (e.target.classList.value.includes('modal__button-close-icon') || e.target.classList === 'modal__button-close') {
-    modal.style.display = 'none';
+  modal.style.display = 'none';
+}
+
+function showPrevious(e) {
+  // Set previous tile id
+  const currentTileId = parseInt(e.target.parentElement.id);
+  let previousTileId;
+  if (currentTileId > 0) {
+    previousTileId = currentTileId - 1;
+  } else if (currentTileId === 0) {
+    previousTileId = 11;
   }
+
+  // Get previous tile content
+  const previousModalContent = getModalContent(userData[previousTileId], previousTileId);
+
+  // Render previous tile modal
+  modal.innerHTML = previousModalContent;
+}
+
+function showNext(e) {
+  // Set next tile id
+  const currentTileId = parseInt(e.target.parentElement.id);
+  let nextTileId;
+  if (currentTileId < 11) {
+    nextTileId = currentTileId + 1;
+  } else if (currentTileId === 11) {
+    nextTileId = 0;
+  }
+
+  // Get next tile content
+  const nextModalContent = getModalContent(userData[nextTileId], nextTileId);
+
+  // Render previous tile modal
+  modal.innerHTML = nextModalContent;
 }
