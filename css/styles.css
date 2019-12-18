@@ -198,7 +198,7 @@ MODAL
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -208,6 +208,7 @@ MODAL
   border-radius: 5px;
   padding: 4rem;
   background-color: var(--background-colour);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;

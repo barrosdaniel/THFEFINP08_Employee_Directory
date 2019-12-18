@@ -2,7 +2,6 @@
 UI Elements
 ======================================================================*/
 const board = document.querySelector('.board');
-const modalButtonClose = document.querySelector('.modal__button-close');
 const modal = document.querySelector('.modal');
 
 
@@ -11,13 +10,15 @@ const modal = document.querySelector('.modal');
 Event Listeners
 ======================================================================*/
 board.addEventListener('click', openModal);
-modalButtonClose.addEventListener('click', closeModal);
+modal.addEventListener('click', closeModal);
+
 
 
 /* ======================================================================
 Controllers
 ======================================================================*/
 let userData;
+
 
 
 /* ======================================================================
@@ -29,7 +30,7 @@ function getUserData() {
     .then((usersJSON) => {
       const users = usersJSON.results;
       userData = users;
-      console.log(users[0].picture.thumbnail);
+
       // Reset Board content
       board.innerHTML = '';
       let boardContent = '';
@@ -71,23 +72,41 @@ function getUserId(clickedElement) {
   }
 }
 
+function getModalContent(userData, tileId) {
+  const userDob = new Date(userData.dob.date).toLocaleDateString();
+
+  const modalContent = `
+  <div class="modal__window" id="${tileId}">
+    <button class="modal__button-close"><i class="fas fa-times"></i></button>
+    <img src="${userData.picture.large}" alt="Image of ${userData.name.first} ${userData.name.last}" class="modal__image">
+    <h2 class="modal__name">${userData.name.first} ${userData.name.last}</h2>
+    <p class="modal__email">${userData.email}</p>
+    <p class="modal__location">${userData.location.city}, ${userData.location.state}, ${userData.location.country}</p>
+    <hr class="modal__hr">
+    <p class="modal__telephone">${userData.cell}</p>
+    <p class="modal__address">${userData.location.street.number} ${userData.location.street.name}, ${userData.location.city} ${userData.location.state} ${userData.location.postcode} ${userData.location.country}</p>
+    <p class="modal__birthday">Birthday: ${userDob}</p>
+  </div>
+  `;
+
+  return modalContent;
+}
+
 function openModal(e) {
   const tileId = getUserId(e.target);
   console.log(tileId);
   const clickedUserData = userData[tileId];
   console.log(clickedUserData);
+  // Use variable clickedUserData to render modal content
+  const modalContent = getModalContent(clickedUserData);
+  modal.innerHTML = modalContent;
 
-
-  console.log(e);
-  // console.log(e.target.parentElement);
-  if (e.target.className === 'tile' ||
-    e.target.parentElement.className === 'tile' ||
-    e.target.parentElement.className === 'tile__text') {
-    console.log(e.target);
-  }
+  // Display modal window
+  modal.style.display = 'flex';
 }
 
-function closeModal() {
-  modal.style.display = 'none';
-
+function closeModal(e) {
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') {
+    modal.style.display = 'none';
+  }
 }
