@@ -280,3 +280,49 @@ MODAL
 .modal__button-next:hover {
   color: var(--gray-color-medium);
 }
+
+@media (max-width: 550px) {
+  .modal__window {
+    padding: 0 0.5rem;
+  }
+
+  .modal__content {
+    width: 25rem;
+    padding: 2rem;
+  }
+
+  .modal__button-close {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    transform: translateY(-1rem) translateX(4rem);
+  }
+
+  .modal__image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .modal__name {
+    font-size: 1.5rem;
+  }
+
+  .modal__email,
+  .modal__location,
+  .modal__telephone,
+  .modal__address,
+  .modal__birthday {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .modal__hr {
+    margin: 1rem 0;
+  }
+
+  .modal__button-previous,
+  .modal__button-next {
+    padding: 0.5rem;
+    font-size: 2rem;
+  }
+}
