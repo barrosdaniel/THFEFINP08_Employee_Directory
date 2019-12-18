@@ -198,17 +198,25 @@ MODAL
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  display: flex;
+  /* To be hidden */
   justify-content: center;
   align-items: center;
 }
 
 .modal__window {
-  width: 45rem;
   border-radius: 5px;
-  padding: 4rem;
+  padding: 0 1rem;
   background-color: var(--background-colour);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal__content {
+  width: 40rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,7 +231,7 @@ MODAL
   color: var(--gray-color-dark);
   font-weight: 700;
   font-size: 2rem;
-  transform: translateY(-2rem) translateX(2rem);
+  transform: translateY(-2rem) translateX(6.5rem);
   cursor: pointer;
   transition: 0.2s all;
 }
@@ -259,4 +267,11 @@ MODAL
   margin: 2rem 0;
   border: var(--gray-color-light);
   background-color: var(--gray-color-light);
+}
+
+.modal__button-previous,
+.modal__button-next {
+  padding: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
 }

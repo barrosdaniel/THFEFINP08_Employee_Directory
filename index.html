@@ -31,16 +31,22 @@
     </div> -->
   </main>
   <div class="modal">
+    <!-- Placeholder modal window -->
     <div class="modal__window">
-      <button class="modal__button-close"><i class="fas fa-times"></i></button>
-      <img src="img/member-1.jpg" alt="Image of User 1" class="modal__image">
-      <h2 class="modal__name">Adriana Sorensen</h2>
-      <p class="modal__email">adriana.sorensen@example.com</p>
-      <p class="modal__location">Chicago</p>
-      <hr class="modal__hr">
-      <p class="modal__telephone">(593) 364-3249</p>
-      <p class="modal__address">851 Scoville Plymouth, WV 84814</p>
-      <p class="modal__birthday">Birthday: 20/01/1980</p>
+      <i class="fas fa-chevron-left modal__button-previous"></i>
+      <div class="modal__content">
+        <button class="modal__button-close"><i
+            class="fas fa-times modal__button-close-icon"></i></button>
+        <img src="img/member-1.jpg" alt="Image of User 1" class="modal__image">
+        <h2 class="modal__name">Adriana Sorensen</h2>
+        <p class="modal__email">adriana.sorensen@example.com</p>
+        <p class="modal__location">Chicago</p>
+        <hr class="modal__hr">
+        <p class="modal__telephone">(593) 364-3249</p>
+        <p class="modal__address">851 Scoville Plymouth, WV 84814</p>
+        <p class="modal__birthday">Birthday: 20/01/1980</p>
+      </div>
+      <i class="fas fa-chevron-right modal__button-next"></i>
     </div>
   </div>
   <script src="js/app.js"></script>

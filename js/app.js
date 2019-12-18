@@ -77,14 +77,15 @@ function getModalContent(userData, tileId) {
 
   const modalContent = `
   <div class="modal__window" id="${tileId}">
-    <button class="modal__button-close"><i class="fas fa-times"></i></button>
+  <button class="modal__button-close"><i
+  class="fas fa-times modal__button-close-icon"></i></button>
     <img src="${userData.picture.large}" alt="Image of ${userData.name.first} ${userData.name.last}" class="modal__image">
     <h2 class="modal__name">${userData.name.first} ${userData.name.last}</h2>
     <p class="modal__email">${userData.email}</p>
     <p class="modal__location">${userData.location.city}, ${userData.location.state}, ${userData.location.country}</p>
     <hr class="modal__hr">
-    <p class="modal__telephone">${userData.cell}</p>
-    <p class="modal__address">${userData.location.street.number} ${userData.location.street.name}, ${userData.location.city} ${userData.location.state} ${userData.location.postcode} ${userData.location.country}</p>
+    <p class="modal__telephone">Cell Number: ${userData.cell}</p>
+    <p class="modal__address"> Address: ${userData.location.street.number} ${userData.location.street.name}, ${userData.location.city} ${userData.location.state} ${userData.location.postcode} ${userData.location.country}</p>
     <p class="modal__birthday">Birthday: ${userDob}</p>
   </div>
   `;
@@ -106,7 +107,7 @@ function openModal(e) {
 }
 
 function closeModal(e) {
-  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'I') {
+  if (e.target.classList.value.includes('modal__button-close-icon') || e.target.classList === 'modal__button-close') {
     modal.style.display = 'none';
   }
 }
