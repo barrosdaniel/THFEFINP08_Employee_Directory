@@ -77,8 +77,9 @@ function getModalContent(userData, tileId) {
 
   const modalContent = `
   <div class="modal__window" id="${tileId}">
-  <button class="modal__button-close"><i
-  class="fas fa-times modal__button-close-icon"></i></button>
+    <i class="fas fa-chevron-left modal__button-previous"></i>
+    <div class="modal__content">
+  <button class="modal__button-close"><i class="fas fa-times modal__button-close-icon"></i></button>
     <img src="${userData.picture.large}" alt="Image of ${userData.name.first} ${userData.name.last}" class="modal__image">
     <h2 class="modal__name">${userData.name.first} ${userData.name.last}</h2>
     <p class="modal__email">${userData.email}</p>
@@ -88,6 +89,8 @@ function getModalContent(userData, tileId) {
     <p class="modal__address"> Address: ${userData.location.street.number} ${userData.location.street.name}, ${userData.location.city} ${userData.location.state} ${userData.location.postcode} ${userData.location.country}</p>
     <p class="modal__birthday">Birthday: ${userDob}</p>
   </div>
+  <i class="fas fa-chevron-right modal__button-next"></i>
+  </div>
   `;
 
   return modalContent;
@@ -95,11 +98,10 @@ function getModalContent(userData, tileId) {
 
 function openModal(e) {
   const tileId = getUserId(e.target);
-  console.log(tileId);
   const clickedUserData = userData[tileId];
-  console.log(clickedUserData);
+
   // Use variable clickedUserData to render modal content
-  const modalContent = getModalContent(clickedUserData);
+  const modalContent = getModalContent(clickedUserData, tileId);
   modal.innerHTML = modalContent;
 
   // Display modal window

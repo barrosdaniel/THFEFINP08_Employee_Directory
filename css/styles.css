@@ -274,4 +274,10 @@ MODAL
   padding: 1rem;
   font-size: 3rem;
   cursor: pointer;
+  transition: 0.2s all;
+}
+
+.modal__button-previous:hover,
+.modal__button-next:hover {
+  color: var(--gray-color-medium);
 }
