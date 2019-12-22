@@ -64,7 +64,7 @@ getUserData();
 
 function processModalClick(e) {
   if (e.target.classList.value.includes('modal__button-close-icon') ||
-    e.target.classList.value.includes('modal__button-close')) {
+    e.target.classList.value.includes('modal__button-close') || e.target.classList.value === 'modal') {
     closeModal(e);
   } else if (e.target.classList.value.includes('modal__button-previous')) {
     showPrevious(e);
