@@ -278,6 +278,7 @@ MODAL
 
 .modal__name {
   font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .modal__email,
