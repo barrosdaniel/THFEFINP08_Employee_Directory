@@ -1,6 +1,7 @@
 /* ======================================================================
 UI Elements
 ======================================================================*/
+const body = document.querySelector('body');
 const board = document.querySelector('.board');
 const modal = document.querySelector('.modal');
 
@@ -11,6 +12,7 @@ Event Listeners
 ======================================================================*/
 board.addEventListener('click', openModal);
 modal.addEventListener('click', processModalClick);
+body.addEventListener('keydown', processModalKeyPress);
 
 
 
@@ -73,6 +75,14 @@ function processModalClick(e) {
   }
 }
 
+function processModalKeyPress(e) {
+  if (e.code === 'ArrowLeft') {
+    showPrevious(e);
+  } else if (e.code === 'ArrowRight') {
+    showNext(e);
+  }
+}
+
 function getUserId(clickedElement) {
   if (clickedElement.className === "tile") {
     return clickedElement.id;
@@ -125,7 +135,8 @@ function closeModal(e) {
 
 function showPrevious(e) {
   // Set previous tile id
-  const currentTileId = parseInt(e.target.parentElement.id);
+  const previousButton = document.querySelector('.modal__button-previous');
+  const currentTileId = parseInt(previousButton.parentElement.id);
   let previousTileId;
   if (currentTileId > 0) {
     previousTileId = currentTileId - 1;
@@ -142,7 +153,8 @@ function showPrevious(e) {
 
 function showNext(e) {
   // Set next tile id
-  const currentTileId = parseInt(e.target.parentElement.id);
+  const previousButton = document.querySelector('.modal__button-next');
+  const currentTileId = parseInt(previousButton.parentElement.id);
   let nextTileId;
   if (currentTileId < 11) {
     nextTileId = currentTileId + 1;
