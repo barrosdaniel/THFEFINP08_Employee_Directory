@@ -72,7 +72,7 @@ HEADER
   justify-content: space-between;
 }
 
-.header__search {
+.header__filter {
   align-self: flex-start;
   border: 1px solid var(--gray-color-medium);
   border-radius: 5px;
@@ -109,7 +109,7 @@ HEADER
   padding: 0;
 }
 
-.header__search {
+.header__filter {
   width: 30rem;
 }
 
@@ -130,7 +130,7 @@ HEADER
     margin-bottom: 1.5rem;
   }
 
-  .header__search {
+  .header__filter {
     width: 100%;
     margin-bottom: 2rem;
   }

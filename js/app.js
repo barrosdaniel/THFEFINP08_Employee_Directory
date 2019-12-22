@@ -2,6 +2,7 @@
 UI Elements
 ======================================================================*/
 const body = document.querySelector('body');
+const filter = document.querySelector('.header__filter');
 const board = document.querySelector('.board');
 const modal = document.querySelector('.modal');
 
@@ -10,9 +11,10 @@ const modal = document.querySelector('.modal');
 /* ======================================================================
 Event Listeners
 ======================================================================*/
+body.addEventListener('keydown', processModalKeyPress);
+filter.addEventListener('keyup', filterEmployees);
 board.addEventListener('click', openModal);
 modal.addEventListener('click', processModalClick);
-body.addEventListener('keydown', processModalKeyPress);
 
 
 
@@ -167,4 +169,23 @@ function showNext(e) {
 
   // Render previous tile modal
   modal.innerHTML = nextModalContent;
+}
+
+function filterEmployees(e) {
+  // Get value of filter field
+  const text = e.target.value.toLowerCase();
+  console.log(text);
+  // Get all tiles
+  const tiles = document.querySelectorAll('.tile');
+  // Render tiles using filter text
+  tiles.forEach((tile) => {
+    console.log(tile);
+    const name = tile.lastElementChild.firstElementChild.textContent.toLowerCase();
+    console.log(name);
+    if (name.indexOf(text) != -1) {
+      tile.style.display = 'flex';
+    } else {
+      tile.style.display = 'none';
+    }
+  });
 }
